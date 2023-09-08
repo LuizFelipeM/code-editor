@@ -1,7 +1,8 @@
 import styles from "./Editor.module.scss";
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import * as monaco from "monaco-editor";
 import { IEditorProps } from "./IEditorProps";
+import { StylesContext } from "../../contexts/StylesContext/StylesContext";
 
 export interface IFileTab {
   active: boolean;
@@ -16,12 +17,13 @@ interface ITab {
 }
 
 const EditorComponent: React.FC<IEditorProps> = ({
-  theme,
+  defaultTheme,
   tabs: fileTabs,
   onChange,
   onEditorMount,
   onEditorUnmount,
 }) => {
+  const { darkThemeSelected } = useContext(StylesContext);
   const containerRef = useRef(null);
 
   const [editor, setEditor] =
@@ -36,7 +38,8 @@ const EditorComponent: React.FC<IEditorProps> = ({
   useEffect(() => {
     if (!editor) {
       const editorInstance = monaco.editor.create(containerRef.current!, {
-        theme,
+        theme: defaultTheme,
+        automaticLayout: true,
       });
 
       onEditorMount?.(editorInstance);
@@ -55,6 +58,14 @@ const EditorComponent: React.FC<IEditorProps> = ({
       }
     };
   }, []);
+
+  useEffect(
+    () =>
+      monaco.editor.setTheme(
+        darkThemeSelected ? "vs-dark" : defaultTheme ?? "vs"
+      ),
+    [darkThemeSelected]
+  );
 
   return <div className={styles.editor} ref={containerRef}></div>;
 };

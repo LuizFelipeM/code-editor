@@ -1,3 +1,21 @@
+@import "src/styles/colors";
+
 .main {
   display: flex;
+  height: 100vh;
+  @include theme-colors($light-theme: true);
+
+  &.dark {
+    @include theme-colors($light-theme: false);
+  }
+}
+
+.explorer {
+  flex: 20em;
+}
+
+.textEditor {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
 }

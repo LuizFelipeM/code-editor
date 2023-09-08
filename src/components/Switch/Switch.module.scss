@@ -1,0 +1,56 @@
+@import "src/styles/colors";
+
+$circle-diameter: 1.15em;
+$switch-width: 2.5em;
+$switch-height: 1.25em;
+
+.switch {
+  width: $switch-width;
+  height: $switch-height;
+
+  input {
+    display: none;
+
+    &[type="checkbox"] {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    &:checked + label {
+      background: $selected-l-color;
+    }
+
+    &:checked + label:after {
+      left: calc(100% - 1px);
+      transform: translateX(-100%);
+    }
+  }
+
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: $switch-width;
+    height: $switch-height;
+    background: $primary-l-color;
+    display: block;
+    border-radius: $switch-height;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: $circle-diameter;
+      height: $circle-diameter;
+      background: #fff;
+      border-radius: $circle-diameter;
+      transition: 0.3s;
+    }
+
+    &:active:after {
+      width: $circle-diameter;
+    }
+  }
+}

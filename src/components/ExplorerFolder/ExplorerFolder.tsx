@@ -19,13 +19,13 @@ export const ExplorerFolder: React.FC<IExplorerFolderProps> = ({
   return (
     <li
       className={classNames(styles.folder, {
-        [styles.open]: open,
+        [styles.selected]: open,
       })}
     >
       <span className={styles.label} onClick={onFolderClick}>
         <span
           className={classNames(styles.folderIcon, {
-            [styles.open]: open,
+            [styles.selected]: open,
           })}
         >
           <Chevron />

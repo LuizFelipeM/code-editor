@@ -1,3 +1,33 @@
-$default-color: #555555;
-$selected-color: #707779;
 $primary-color: #7480a3;
+
+// Light editor
+$default-l-color: #555555;
+$selected-l-color: #707779;
+$bg-l-color: #efefef;
+
+// Dark editor
+$default-d-color: #cecece;
+$selected-d-color: #707779;
+$bg-d-color: #171718;
+
+@mixin theme-colors($light-theme: true) {
+  @if $light-theme {
+    background-color: $bg-l-color;
+    color: $default-l-color;
+    fill: $default-l-color;
+
+    .selected {
+      color: $selected-l-color;
+      fill: $selected-l-color;
+    }
+  } @else {
+    background-color: $bg-d-color;
+    color: $default-d-color;
+    fill: $default-d-color;
+
+    .selected {
+      color: $selected-d-color;
+      fill: $selected-d-color;
+    }
+  }
+}

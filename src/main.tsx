@@ -1,9 +1,10 @@
+import "./useWorkers";
+import "./main.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App";
 import { EdditingProvider } from "./contexts/EdditingContext/EdditingContext";
-import "./useWorkers";
-import "./main.scss";
+import { StylesProvider } from "./contexts/StylesContext/StylesContext";
 
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 //   <React.StrictMode>
@@ -14,7 +15,9 @@ import "./main.scss";
 ReactDOM.render(
   <React.StrictMode>
     <EdditingProvider>
-      <App />
+      <StylesProvider>
+        <App />
+      </StylesProvider>
     </EdditingProvider>
   </React.StrictMode>,
   document.getElementById("root")
