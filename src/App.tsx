@@ -1,11 +1,12 @@
+import styles from "./App.module.scss";
 import { Editor } from "./components/Editor/Editor";
-import { FileExplorer } from "./components/FileExplorer/FileExplorer";
+import { Explorer } from "./components/Explorer/Explorer";
 
 export const App: React.FC = () => {
   return (
-    <div>
-      <FileExplorer />
-      <Editor />;
-    </div>
+    <main className={styles.main}>
+      <Explorer />
+      <Editor />
+    </main>
   );
 };

@@ -1,8 +1,9 @@
 import styles from "./Editor.module.scss";
 import React, { memo, useEffect, useRef, useState } from "react";
 import * as monaco from "monaco-editor";
+import { IEditorProps } from "./IEditorProps";
 
-interface IFileTab {
+export interface IFileTab {
   active: boolean;
   data: string;
   language?: string;
@@ -12,14 +13,6 @@ interface ITab {
   active: boolean;
   model: monaco.editor.ITextModel;
   state?: monaco.editor.ICodeEditorViewState;
-}
-
-interface IEditorProps {
-  theme?: string;
-  tabs?: IFileTab[];
-  onChange?: (value: string) => void;
-  onEditorMount?: (editor: monaco.editor.IStandaloneCodeEditor) => void;
-  onEditorUnmount?: (editor: monaco.editor.IStandaloneCodeEditor) => void;
 }
 
 const EditorComponent: React.FC<IEditorProps> = ({
@@ -63,7 +56,7 @@ const EditorComponent: React.FC<IEditorProps> = ({
     };
   }, []);
 
-  return <div className={styles.Editor} ref={containerRef}></div>;
+  return <div className={styles.editor} ref={containerRef}></div>;
 };
 
 export const Editor = memo(EditorComponent);
